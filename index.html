@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101718">
+  <meta name="description" content="Live checks of public websites, with a clear distinction between probe reachability and service health.">
+  <title>Singtel Pulse — service watch</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Singtel Pulse home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>singtel<span class="brand-light">pulse</span></span></a>
+      <div class="topright"><span class="live-dot"></span><span>MONITORING CONSOLE</span><span id="clock" class="clock"></span></div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> SINGAPORE · PUBLIC WEB ENDPOINTS</div>
+          <h1 id="hero-title">Know what’s <em>responding.</em></h1>
+          <p>Independent checks of Singtel’s public websites and Fanfiction.net, every minute. A failed automated probe may reflect bot protection.</p>
+          <div class="hero-actions"><a href="#services" class="button primary">View live checks <span aria-hidden="true">↗</span></a><a href="#how-it-works" class="button ghost">How this works <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core"><div class="core-inner"></div></div><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div><div class="art-caption"><span class="signal-line"></span> CONTINUOUS SIGNAL</div></div>
+      </section>
+
+      <section class="overview" aria-label="Monitoring summary">
+        <div class="overview-main"><div class="section-kicker">CURRENT SIGNAL</div><div class="overview-status"><span id="overall-indicator" class="status-glyph unknown"></span><span id="overall-title">Connecting to monitor</span></div><p id="overall-description">Waiting for the monitoring backend.</p></div>
+        <div class="overview-stat"><span class="stat-label">CHECK FREQUENCY</span><strong>60<span>sec</span></strong><small>from an external location</small></div>
+        <div class="overview-stat"><span class="stat-label">LAST UPDATE</span><strong id="last-update" class="last-update">—</strong><small id="last-update-detail">No data yet</small></div>
+      </section>
+
+      <section id="services" class="content-section">
+        <div class="section-heading"><div><div class="section-kicker">01 / LIVE MONITORING</div><h2>Service checks</h2></div><span class="section-note">Results reflect the probe’s location</span></div>
+        <div id="services-grid" class="services-grid" aria-live="polite">
+          <article class="service-card loading"><div class="card-top"><span class="icon-box">↗</span><span class="pill unknown">AWAITING DATA</span></div><h3>Singtel website</h3><p>Public homepage</p><div class="card-rule"></div><div class="card-metrics"><span>Last checked</span><strong>—</strong></div></article>
+          <article class="service-card loading"><div class="card-top"><span class="icon-box">☷</span><span class="pill unknown">AWAITING DATA</span></div><h3>Singtel support</h3><p>Help and support portal</p><div class="card-rule"></div><div class="card-metrics"><span>Last checked</span><strong>—</strong></div></article>
+        </div>
+      </section>
+
+      <section class="lower-grid">
+        <div class="panel" id="activity"><div class="panel-heading"><div><div class="section-kicker">02 / EVENT LOG</div><h2>Recent changes</h2></div><span class="tiny-dot"></span></div><div id="event-list" class="event-list" aria-live="polite"><p class="empty">No events loaded yet.</p></div></div>
+        <div class="panel scope-panel" id="how-it-works"><div class="section-kicker">03 / WHAT WE CAN SEE</div><h2>Scope of coverage</h2><div class="scope-item"><span class="scope-icon good">✓</span><div><strong>Public web endpoints</strong><p>We request Singtel’s homepage and support page, plus Fanfiction.net. Three failed checks flag a site; two successful checks clear it.</p></div></div><div class="scope-item"><span class="scope-icon muted">—</span><div><strong>Bot protection and network health</strong><p>An HTTP 403 challenge can block the monitor while visitors can still use the site. Website checks do not measure Singtel mobile or broadband.</p></div></div><div class="scope-callout"><span class="callout-mark">i</span><p>This dashboard reports <strong>reachability from Cloudflare</strong>. It does not prove a site or telco service is down for everyone.</p></div></div>
+      </section>
+    </main>
+    <footer><span>© <span id="year"></span> SINGTEL PULSE</span><span>Independent community monitor · Not affiliated with Singtel</span><a href="https://www.singtel.com/personal/support" target="_blank" rel="noopener noreferrer">Singtel support ↗</a></footer>
+  </div>
+</body>
+</html>
