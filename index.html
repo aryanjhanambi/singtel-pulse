@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101718">
-  <meta name="description" content="Live checks of public websites, with a clear distinction between probe reachability and service health.">
+  <meta name="description" content="Live website checks and RIPE Atlas and RIS network signals for Singtel Fibre Broadband.">
   <title>Singtel Pulse — service watch</title>
   <link rel="stylesheet" href="styles.css">
   <script src="config.js" defer></script>
@@ -20,9 +20,9 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-line"></span> SINGAPORE · PUBLIC WEB ENDPOINTS</div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> SINGAPORE · WEBSITE AND NETWORK SIGNALS</div>
           <h1 id="hero-title">Know what’s <em>responding.</em></h1>
-          <p>Independent checks of Singtel’s public websites and Fanfiction.net, every minute. A failed automated probe may reflect bot protection.</p>
+          <p>Independent website checks every minute, alongside RIPE Atlas probe connectivity and RIPE RIS routing visibility for Singtel Fibre Broadband (AS9506).</p>
           <div class="hero-actions"><a href="#services" class="button primary">View live checks <span aria-hidden="true">↗</span></a><a href="#how-it-works" class="button ghost">How this works <span aria-hidden="true">↓</span></a></div>
         </div>
         <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core"><div class="core-inner"></div></div><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div><div class="art-caption"><span class="signal-line"></span> CONTINUOUS SIGNAL</div></div>
@@ -42,9 +42,14 @@
         </div>
       </section>
 
+      <section class="content-section" aria-labelledby="network-title">
+        <div class="section-heading"><div><div class="section-kicker">02 / NETWORK SIGNALS</div><h2 id="network-title">Singtel Fibre · AS9506</h2></div><a class="section-note" href="https://stat.ripe.net/resource/AS9506#tab=overview" target="_blank" rel="noopener noreferrer">View on RIPEstat ↗</a></div>
+        <div id="network-grid" class="services-grid" aria-live="polite"><p class="empty">Waiting for RIPE data.</p></div>
+      </section>
+
       <section class="lower-grid">
-        <div class="panel" id="activity"><div class="panel-heading"><div><div class="section-kicker">02 / EVENT LOG</div><h2>Recent changes</h2></div><span class="tiny-dot"></span></div><div id="event-list" class="event-list" aria-live="polite"><p class="empty">No events loaded yet.</p></div></div>
-        <div class="panel scope-panel" id="how-it-works"><div class="section-kicker">03 / WHAT WE CAN SEE</div><h2>Scope of coverage</h2><div class="scope-item"><span class="scope-icon good">✓</span><div><strong>Public web endpoints</strong><p>We request Singtel’s homepage and support page, plus Fanfiction.net. Three failed checks flag a site; two successful checks clear it.</p></div></div><div class="scope-item"><span class="scope-icon muted">—</span><div><strong>Bot protection and network health</strong><p>An HTTP 403 challenge can block the monitor while visitors can still use the site. Website checks do not measure Singtel mobile or broadband.</p></div></div><div class="scope-callout"><span class="callout-mark">i</span><p>This dashboard reports <strong>reachability from Cloudflare</strong>. It does not prove a site or telco service is down for everyone.</p></div></div>
+        <div class="panel" id="activity"><div class="panel-heading"><div><div class="section-kicker">03 / EVENT LOG</div><h2>Recent changes</h2></div><span class="tiny-dot"></span></div><div id="event-list" class="event-list" aria-live="polite"><p class="empty">No events loaded yet.</p></div></div>
+        <div class="panel scope-panel" id="how-it-works"><div class="section-kicker">04 / WHAT WE CAN SEE</div><h2>Scope of coverage</h2><div class="scope-item"><span class="scope-icon good">✓</span><div><strong>Public web endpoints</strong><p>We request Singtel’s homepage and support page, plus Fanfiction.net. Three failed checks flag a site; two successful checks clear it.</p></div></div><div class="scope-item"><span class="scope-icon good">✓</span><div><strong>RIPE network signals</strong><p>Atlas reports volunteer probes connected through AS9506. RIS shows prefixes visible to its routing collectors; its data updates about every eight hours. A majority of at least four recently active Atlas probes must disconnect before we flag that signal.</p></div></div><div class="scope-item"><span class="scope-icon muted">—</span><div><strong>Limits of these checks</strong><p>A 403 may be bot protection. Probe disconnections and BGP visibility do not directly measure every Singtel customer's connection or mobile service.</p></div></div><div class="scope-callout"><span class="callout-mark">i</span><p>This dashboard reports <strong>observed signals</strong>, not a confirmed nationwide outage.</p></div></div>
       </section>
     </main>
     <footer><span>© <span id="year"></span> SINGTEL PULSE</span><span>Independent community monitor · Not affiliated with Singtel</span><a href="https://www.singtel.com/personal/support" target="_blank" rel="noopener noreferrer">Singtel support ↗</a></footer>
