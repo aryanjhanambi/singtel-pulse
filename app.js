@@ -22,10 +22,11 @@ function render(data) {
   $('last-update').textContent = formatTime(latest);
   $('last-update-detail').textContent = relative(latest);
   const card = (item) => {
-    const status = item.status === 'operational' ? 'operational' : item.status === 'unreachable' ? 'unreachable' : 'unknown';
+    const isStale = !item.checked_at || Date.now() - new Date(item.checked_at).getTime() > 180000;
+    const status = isStale ? 'unknown' : item.status === 'operational' ? 'operational' : item.status === 'unreachable' ? 'unreachable' : 'unknown';
     const isNetwork = item.service_group === 'Network signals';
-    const label = status === 'operational' ? (isNetwork ? 'VISIBLE' : 'RESPONDING') : status === 'unreachable' ? (isNetwork ? 'SIGNAL LOSS' : 'UNREACHABLE') : 'CHECKING';
-    const detail = item.error ? item.error : item.http_status ? `HTTP ${item.http_status}` : 'Awaiting result';
+    const label = isStale && item.checked_at ? 'STALE' : status === 'operational' ? (isNetwork ? 'VISIBLE' : 'RESPONDING') : status === 'unreachable' ? (isNetwork ? 'SIGNAL LOSS' : 'UNREACHABLE') : 'CHECKING';
+    const detail = isStale && item.checked_at ? 'No fresh result from this source' : item.error ? item.error : item.http_status ? `HTTP ${item.http_status}` : 'Awaiting result';
     return `<article class="service-card"><div class="card-top"><span class="icon-box">${isNetwork ? '◉' : item.id === 'singtel-home' ? '↗' : '☷'}</span><span class="pill ${status}">${label}</span></div><h3>${escapeHtml(item.name)}</h3><p><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${isNetwork ? 'RIPEstat source ↗' : escapeHtml(item.url)}</a></p><div class="card-rule"></div><div class="card-metrics"><span>${escapeHtml(detail)}</span><strong>${formatTime(item.checked_at)}</strong></div></article>`;
   };
   $('services-grid').innerHTML = websites.length ? websites.map(card).join('') : '<p class="empty">Waiting for the first scheduled check.</p>';
